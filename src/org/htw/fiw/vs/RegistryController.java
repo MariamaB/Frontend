@@ -1,34 +1,41 @@
 package org.htw.fiw.vs;
 
+import java.awt.Button;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
+import java.util.Date;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 
+import org.htw.fiw.vs.team1.ButtonInterface;
+
+
 @Path("/registry")
 public class RegistryController{
+	
+	String wasPressed=" ";
 
 	@GET
 	public String sendRegistryContent() throws RemoteException, MalformedURLException, NotBoundException {
-
-		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.209.97/binder");
+		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.214.93/binder");
 		 String[] list = registry.list();
 		 
-		 String s = "Registered elements: ";
+		 String s = "";
 		 int i = 1;
 		 for (String elm : list) {
 			 System.out.println(elm);
 			 s = s+"<br />"+i+"."+elm;
+			 
+			 ButtonInterface btn = (ButtonInterface) registry.lookup(elm);
 			 i++;
 		 }
-		 
-		 return s;
-		// return Response.status(200).entity("<html> " + "<title>" + "Hello HTML Response" + "</title><body><div "+"Style = background-color: black" +">"+s+"</div></body></html>").build();
-		//return ResponseEntity.created().header("MyResponseHeader", "MyValue").body("Hello World"); 
+		return new MyHtml().getHtml(s, wasPressed);
 	}
 
 	
@@ -38,5 +45,15 @@ public class RegistryController{
 //	public String hello(@PathParam("user") String user) {
 //		return "hello " + user;
 //	}
+	
+	public void wasPressed(String name, Date date) throws MalformedURLException, RemoteException, NotBoundException{
+		
+		wasPressed =" " + name + "was pressed at: " + date + "<br />" + wasPressed;
+		System.out.println(wasPressed);
+	}
+
+
+	
+
 
 }
