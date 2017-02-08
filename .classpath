@@ -15,5 +15,6 @@
 	<classpathentry kind="src" path="/lamp"/>
 	<classpathentry kind="src" path="/button"/>
 	<classpathentry kind="src" path="/vs.rmi.interfaces"/>
+	<classpathentry kind="src" path="/lampButtonServer"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
