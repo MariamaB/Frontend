@@ -23,19 +23,19 @@ public class RegistryController{
 		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.213.212/binder");
 		String[] list = registry.list();
 		 
-		 String registredElement = "";
+		 String registeredElement = "";
 		 int i = 1;
 		 for (String elm : list) {
 			 System.out.println(elm);
 			 if (elm.contains("button")) {
-				 registredElement = registredElement + "<br/>"+ i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"" + elm + "\">Click</button>";
+				 registeredElement = registeredElement + "<br/>"+ i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"" + elm + "\">Click</button>";
 			 }
 			 else {
-				 registredElement = registredElement+"<br />"+i+"."+elm;
+				 registeredElement = registeredElement+"<br />"+i+"."+elm;
 			 }
 			 i++;
 		 }
-		return new MyHtml().getHtml(registredElement);
+		return new MyHtml().getHtml(registeredElement);
 	}
 	
 	@POST
