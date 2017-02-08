@@ -9,6 +9,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
+import org.htw.fiw.vs.team1.ControllerInterface;
+
 
 @Path("/registry")
 public class RegistryController{
@@ -20,10 +22,27 @@ public class RegistryController{
 	@GET
 	public String sendRegistryContent() throws RemoteException, MalformedURLException, NotBoundException {
 
-		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.213.212/binder");
+		IBinder registry = (IBinder) Naming.lookup("rmi://localhost/binder");
 		String[] list = registry.list();
 		 
-		 String registeredElement = "";
+		String registeredElement = printList(list);
+		return new MyHtml().getHtml(registeredElement);
+	}
+	
+	
+	@POST
+	public String sendData() throws MalformedURLException, RemoteException, NotBoundException {
+		IBinder registry = (IBinder) Naming.lookup("rmi://localhost/binder");
+		ControllerInterface ci = (ControllerInterface) registry.lookup("controller");
+		ci.printFromServer("yes this is the server speaking");
+		
+		String[] list = registry.list();
+		String registeredElement = printList(list);
+		return new MyHtml().getHtml(registeredElement);
+	}
+
+	private String printList(String[] list) {
+		String registeredElement = "";
 		 int i = 1;
 		 for (String elm : list) {
 			 System.out.println(elm);
@@ -35,13 +54,7 @@ public class RegistryController{
 			 }
 			 i++;
 		 }
-		return new MyHtml().getHtml(registeredElement);
-	}
-	
-	@POST
-	public String hello() {
-		System.out.println("Hallo POST");
-		return "hello";
+		return registeredElement;
 	}
 
 }
