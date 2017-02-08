@@ -22,7 +22,8 @@ public class RegistryController{
 			+"<option value=\"no-pattern\">No Pattern</option>"
 			+"<option value=\"even-odd\">Even Odd</option>"
 			+"<option value=\"all-lamps\">All Lamps</option>"
-			+"<option value=\"blink\">Blink</option></select>";
+			+"<option value=\"blink\">Blink</option>"
+			+"<option value=\"switch-off\">Switch off</option></select>";
 	}
 	
 	@GET
