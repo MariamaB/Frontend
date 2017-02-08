@@ -55,7 +55,7 @@ public class RegistryController{
 		 for (String elm : list) {
 			 System.out.println(elm);
 			 if (elm.contains("button")) {
-				 registeredElement = registeredElement + "<br/>"+ i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"name\" value=\"" + elm +"\"" + "\">Click</button>";
+				 registeredElement = registeredElement + "<p>" + "<form action=\"registry\" method=\"GET\">" + i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"name\" value=\"" + elm +"\"" + "\">Click</button>" + "</form>" + "</p>";
 			 }
 			 else {
 				 registeredElement = registeredElement+"<br />"+i+"."+elm;
