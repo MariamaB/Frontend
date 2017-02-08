@@ -11,19 +11,26 @@ import javax.ws.rs.Path;
 
 @Path("/registry")
 public class RegistryController{
-
-
+	private static String dropdown() {
+		return "<select><option value=\"muster1\">Muster1</option><option value=\"an-aus\">An Aus</option></select>";
+	}
+	
 	@GET
 	public String sendRegistryContent() throws RemoteException, MalformedURLException, NotBoundException {
-		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.205.36/binder");
-		 String[] list = registry.list();
+
+		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.213.212/binder");
+		String[] list = registry.list();
 		 
 		 String registredElement = "";
 		 int i = 1;
 		 for (String elm : list) {
 			 System.out.println(elm);
-			 registredElement = registredElement+"<br />"+i+"."+elm;
-			 
+			 if (elm.contains("button")) {
+				 registredElement = registredElement + "<br/>"+ i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"" + elm + "\">Click</button>";
+			 }
+			 else {
+				 registredElement = registredElement+"<br />"+i+"."+elm;
+			 }
 			 i++;
 		 }
 
