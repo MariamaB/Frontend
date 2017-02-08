@@ -22,13 +22,13 @@ public class RegistryController{
 	}
 	
 	@GET
-	public String sendRegistryContent(@QueryParam("name") String name) throws RemoteException, MalformedURLException, NotBoundException {
+	public String sendRegistryContent(@QueryParam("name") String name, @QueryParam("pattern") String pattern) throws RemoteException, MalformedURLException, NotBoundException {
 	
 		IBinder registry = (IBinder) Naming.lookup("rmi://localhost/binder");
 		String[] list = registry.list();
 		
 		ControllerInterface ci = (ControllerInterface) registry.lookup("controller");
-		ci.printFromServer(name);
+		ci.changePattern(name, pattern);
 		
 		String registeredElement = printList(list);
 		return new MyHtml().getHtml(registeredElement);
