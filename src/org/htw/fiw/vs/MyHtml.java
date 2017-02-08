@@ -12,7 +12,7 @@ public class MyHtml {
 			 	+ "<h1>Components</h1>"
 			 	+ "<div class=\"row\">"
 			 	+ "<form action=\"registry\" method=\"GET\">"
-	 			+ "<div class=\"col-md-6\""+">Registered Elements: "+ registerdElements +"</div>"
+	 			+ "<div class=\"col-md-12\""+">Registered Elements: "+ registerdElements +"</div>"
 	 			+ "</form>"
 	 			+ "</div>"
 	 			+ "</div>"

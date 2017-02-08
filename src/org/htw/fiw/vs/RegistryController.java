@@ -18,7 +18,11 @@ import org.htw.fiw.vs.team1.ControllerInterface;
 public class RegistryController{
 	
 	private static String dropdown() {
-		return "<select name=\"pattern\"><option value=\"no-pattern\">No Pattern</option><option value=\"blink\">Blink</option></select>";
+		return "<select name=\"pattern\">"
+			+"<option value=\"no-pattern\">No Pattern</option>"
+			+"<option value=\"even-odd\">Even Odd</option>"
+			+"<option value=\"all-lamps\">All Lamps</option>"
+			+"<option value=\"blink\">Blink</option></select>";
 	}
 	
 	@GET
