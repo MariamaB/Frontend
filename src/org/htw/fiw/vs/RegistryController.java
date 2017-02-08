@@ -6,11 +6,13 @@ import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 
 
 @Path("/registry")
 public class RegistryController{
+	
 	private static String dropdown() {
 		return "<select><option value=\"muster1\">Muster1</option><option value=\"an-aus\">An Aus</option></select>";
 	}
@@ -33,21 +35,13 @@ public class RegistryController{
 			 }
 			 i++;
 		 }
-
 		return new MyHtml().getHtml(registredElement);
 	}
-
 	
-	
-//	@GET
-//	@Path("/{user}")
-//	public String hello(@PathParam("user") String user) {
-//		return "hello " + user;
-//	}
-
-
-
-	
-
+	@POST
+	public String hello() {
+		System.out.println("Hallo POST");
+		return "hello";
+	}
 
 }

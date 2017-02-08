@@ -11,7 +11,7 @@ public class MyHtml {
 			 	+ "<div class=\"container\">"
 			 	+ "<h1>Components</h1>"
 			 	+ "<div class=\"row\">"
-			 	+ "<form action=\"some route\" method=\"POST\">"
+			 	+ "<form action=\"registry\" method=\"POST\">"
 	 			+ "<div class="+"col-md-6"+" "+"style="+"border:double"+">Registered Elements: "+ registerdElements +"</div>"
 	 			+ "</form>"
 	 			+ "<div class="+"col-md-6"+" "+"style="+"border:double"+">Clicked Buttons: </div>"
