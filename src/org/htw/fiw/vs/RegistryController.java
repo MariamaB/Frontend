@@ -26,16 +26,16 @@ public class RegistryController{
 		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.214.93/binder");
 		 String[] list = registry.list();
 		 
-		 String s = "";
+		 String registredElement = "";
 		 int i = 1;
 		 for (String elm : list) {
 			 System.out.println(elm);
-			 s = s+"<br />"+i+"."+elm;
+			 registredElement = registredElement+"<br />"+i+"."+elm;
 			 
 			 ButtonInterface btn = (ButtonInterface) registry.lookup(elm);
 			 i++;
 		 }
-		return new MyHtml().getHtml(s, wasPressed);
+		return new MyHtml().getHtml(registredElement, wasPressed);
 	}
 
 	
