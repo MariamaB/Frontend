@@ -18,7 +18,7 @@ import org.htw.fiw.vs.team1.ControllerInterface;
 public class RegistryController{
 	
 	private static String dropdown() {
-		return "<select name=\"pattern\">"
+		return "<select class=\"select\" name=\"pattern\">"
 			+"<option value=\"no-pattern\">No Pattern</option>"
 			+"<option value=\"even-odd\">Even Odd</option>"
 			+"<option value=\"all-lamps\">All Lamps</option>"
@@ -33,7 +33,9 @@ public class RegistryController{
 		String[] list = registry.list();
 		
 		ControllerInterface ci = (ControllerInterface) registry.lookup("controller");
-		ci.changePattern(name, pattern);
+		if (name != null && !name.isEmpty() && pattern != null && !pattern.isEmpty()) {
+			ci.changePattern(name, pattern);
+		}
 		
 		String registeredElement = printList(list);
 		return new MyHtml().getHtml(registeredElement);
@@ -42,7 +44,7 @@ public class RegistryController{
 	
 	@POST
 	public String sendData() throws MalformedURLException, RemoteException, NotBoundException {
-		IBinder registry = (IBinder) Naming.lookup("rmi://localhost/binder");
+		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.251.207/binder");
 
 		String[] list = registry.list();
 		String registeredElement = printList(list);
@@ -55,10 +57,17 @@ public class RegistryController{
 		 for (String elm : list) {
 			 System.out.println(elm);
 			 if (elm.contains("button")) {
-				 registeredElement = registeredElement + "<p>" + "<form action=\"registry\" method=\"GET\">" + i + "." + elm + RegistryController.dropdown() + "<button type=\"submit\" name=\"name\" value=\"" + elm +"\"" + "\">Click</button>" + "</form>" + "</p>";
+				 registeredElement = registeredElement 
+					+ "<tr><th>" 
+					+ "<form style=\"margin-bottom: 1em; margin-top: 1em;\" action=\"registry\" method=\"GET\">" 
+					+ i + ". " + elm 
+					+ RegistryController.dropdown() 
+					+ "<button class=\"btn btn-success\" type=\"submit\" name=\"name\" value=\""+ elm +"\"" + "\">Pattern anwenden</button>" 
+					+ "</form>" 
+					+ "</th></tr>";
 			 }
 			 else {
-				 registeredElement = registeredElement+"<br />"+i+"."+elm;
+				 registeredElement = registeredElement + "<tr><th>" + i + ". " + elm + "</th></tr>";
 			 }
 			 i++;
 		 }

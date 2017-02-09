@@ -9,7 +9,7 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 public class RestServer {
 	public static void main(String[] args) throws InterruptedException, IOException {
-		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create("http://localhost:8099"),
+		HttpServer server = GrizzlyHttpServerFactory.createHttpServer(URI.create("http://141.45.251.207:8099"),
 				new ResourceConfig(RegistryController.class));
 
 		System.out.println("Press any key to close");
