@@ -23,6 +23,7 @@ public class RegistryController{
 			+"<option value=\"even-odd\">Even Odd</option>"
 			+"<option value=\"all-lamps\">All Lamps</option>"
 			+"<option value=\"blink\">Blink</option>"
+			+"<option value=\"sequence\">Sequence</option>"
 			+"<option value=\"switch-off\">Switch off</option></select>";
 	}
 	
@@ -44,7 +45,7 @@ public class RegistryController{
 	
 	@POST
 	public String sendData() throws MalformedURLException, RemoteException, NotBoundException {
-		IBinder registry = (IBinder) Naming.lookup("rmi://141.45.251.207/binder");
+		IBinder registry = (IBinder) Naming.lookup("rmi://localhost/binder");
 
 		String[] list = registry.list();
 		String registeredElement = printList(list);
